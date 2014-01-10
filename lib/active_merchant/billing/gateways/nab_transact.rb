@@ -181,6 +181,12 @@ module ActiveMerchant #:nodoc:
             xml.tag! 'expiryDate', expdate(credit_card)
             xml.tag! 'cvv', credit_card.verification_value if credit_card.verification_value?
           end
+          
+          xml.tag! 'DirectEntryInfo' do
+            xml.tag! 'bsbNumber', options[:bsb_number]
+            xml.tag! 'accountNumber', options[:account_number]
+            xml.tag! 'accountName', credit_card.name
+          end
         end
         xml.tag! 'amount', amount(money)
 
